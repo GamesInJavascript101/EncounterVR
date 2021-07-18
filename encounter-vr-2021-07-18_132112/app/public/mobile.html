@@ -1,0 +1,71 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<audio src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2Fintrohack.mp3?v=1626548595179" autoplay="autoplay"></audio>
+<audio id="audio" src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2FAudioClickSoundEffect.mp3?v=1626548865785"></audio>
+
+<html>
+  <head>
+
+        <script>
+      function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+    </script>
+<script>
+    setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+}, 5600); 
+  
+  var vids = $("video"); 
+$.each(vids, function(){
+       this.controls = false; 
+}); 
+    </script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+  <div id="mydiv">
+    
+    
+    <div class="imgdiv"></div>
+    <div class="imgdiv"></div>
+    <div class="imgdiv">
+        <img src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2FUntitled_design__38_-removebg-preview.png?v=1626507297825" alt="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2FMouse%20Click%20-%20Sound%20Effect%20(HD).mp3?v=1626548710465" >
+    </div>
+
+
+    </div>
+
+    <center>
+    
+    <div class="login-page">
+        <br>
+      <div class="form">
+                <img src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2FWebsite__2_-removebg-preview.png?v=1626539678375" alt="" style="height: 500px;
+                                  width: 500px;     
+ border-radius: 6px; margin-top: -120px">
+        <h2 class="txt" style="margin-top: -220px;">Create/Join a virtual meeting.</h2>
+          
+          <p style="font-size: 18px;   font-weight: 500; color: #222;margin-top: -50px; font-family: 'Baloo 2', cursive;
+">           
+            Enter your meeting code or create a meeting code down below.
+              </p>            <br>
+
+         <input class="inputtxt" type="text" name="room" placeholder="Room id: " required/>
+         <br><br>
+                  <br><br>
+
+          <a href="https://encounter-vr-meeting.glitch.me/" target="_blank">   <button class="btn" onclick="play()">Join room</button> </a>
+        </form>
+      <br><br>
+      </div>
+    </div>
+    <iframe src="https://voice-chat-thingie.glitch.me/" style="z-index: -1000; position: fixed; margin-top: -5000px;">
+      
+    </iframe>
+      </center>
+  </body>
+</html>

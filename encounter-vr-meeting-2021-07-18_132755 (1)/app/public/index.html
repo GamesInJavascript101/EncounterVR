@@ -1,0 +1,485 @@
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <audio src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2FGoogle%20Meet%20Join%20Sound%20Effect.mp3?v=1626468945103" autoplay="autoplay" ></audio>
+
+    <title>EncounterVR - A free virtual 3d meeting environment</title>
+    <meta name="description" content="EncounterVr - A virtual meeting workspace">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/adapterjs/0.15.5/adapter.min.js" integrity="sha512-8HaugtT+4c0rhgZIggNCv7I2N0u5OuCXQutD91XdRLqtBl4kD5z2B6QmHczDFMpeENZV060Fip3S954njcfv9A==" crossorigin="anonymous"></script>
+    
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-atoll-terrain@^0.7.0/dist/aframe-atoll-terrain.js"></script>
+<script src="https://unpkg.com/aframe-physics-system@3.3.0/dist/aframe-physics-system.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script src="easyrtc/easyrtc.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/networked-aframe/networked-aframe@master/dist/networked-aframe.min.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="/js/spawn-in-circle.component.js"></script>
+    
+   <script src="https://unpkg.com/aframe-textarea-component/dist/aframe-textarea-component.min.js"></script> 
+
+
+    
+  </head>
+  
+  
+  <body>
+  
+    <script>
+      
+      
+setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+  
+}, 10000); // <-- time in milliseconds      
+      
+      AFRAME.registerComponent('camTexture', {
+        schema: {},
+        update: function (webcam) {
+          
+        var webcam = document.querySelector('#webcam');
+        this.el.components.material.src = webcam;
+        
+
+        }
+        
+      })
+      
+    
+    </script>
+    <style>
+    #mydiv{
+    width: 100%;
+    height: 100%;
+  background-image: url('https://www.xmple.com/wallpaper/orange-pink-gradient-linear-2880x1800-c2-f6be53-ed376d-a-90-f-14.svg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 110% 110%;
+      color: #fff;
+    text-align: center;
+      z-index: 1000;
+
+      }
+
+#load {
+  position:absolute;
+  width:600px;
+  height:36px;
+  left:50%;
+  top:40%;
+  margin-left:-300px;
+  overflow:visible;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#load div {
+  position:absolute;
+  width:20px;
+  height:36px;
+  opacity:0;
+  font-family:Helvetica, Arial, sans-serif;
+  animation:move 2s linear infinite;
+  -o-animation:move 2s linear infinite;
+  -moz-animation:move 2s linear infinite;
+  -webkit-animation:move 2s linear infinite;
+  transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  color:#222;
+}
+
+#load div:nth-child(2) {
+  animation-delay:0.2s;
+  -o-animation-delay:0.2s;
+  -moz-animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+#load div:nth-child(3) {
+  animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+}
+#load div:nth-child(4) {
+  animation-delay:0.6s;
+  -o-animation-delay:0.6s;
+  -moz-animation-delay:0.6s;
+  -webkit-animation-delay:0.6s;
+}
+#load div:nth-child(5) {
+  animation-delay:0.8s;
+  -o-animation-delay:0.8s;
+  -moz-animation-delay:0.8s;
+  -webkit-animation-delay:0.8s;
+}
+#load div:nth-child(6) {
+  animation-delay:1s;
+  -o-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -webkit-animation-delay:1s;
+}
+#load div:nth-child(7) {
+  animation-delay:1.2s;
+  -o-animation-delay:1.2s;
+  -moz-animation-delay:1.2s;
+  -webkit-animation-delay:1.2s;
+}
+
+@keyframes move {
+  0% {
+    left:0;
+    opacity:0;
+  }
+	35% {
+		left: 41%; 
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-moz-transform:rotate(0deg); 
+		-webkit-transform:rotate(0deg); 
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-moz-transform:rotate(-180deg); 
+		-webkit-transform:rotate(-180deg); 
+		-o-transform:rotate(-180deg); 
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-moz-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-moz-transform:rotate(0deg); 
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-moz-transform:rotate(0deg); 
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-moz-transform:rotate(-180deg); 
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-webkit-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-webkit-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-webkit-transform:rotate(-180deg); 
+		transform:rotate(-180deg); 
+		opacity:0;
+	}
+}
+
+@-o-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-o-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-o-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-o-transform:rotate(-180deg); 
+		transform:rotate(-180deg); 
+		opacity:0;
+	}
+}    
+    </style>
+    
+    
+    
+    
+    
+    
+    <a-scene physics="debug: false; restitution: 10;" dynamic-room networked-scene="
+      room: audio;
+      adapter: easyrtc;
+      audio: false;
+      video: true;
+      debug: true;
+      inspector=https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+      
+      
+      
+  <!--Loading div-->
+    <div id="mydiv" >
+    
+    <div id="load">
+  <div>G</div>
+  <div>N</div>
+  <div>I</div>
+  <div>D</div>
+  <div>A</div>
+  <div>O</div>
+  <div>L</div>
+</div>
+    
+    </div>
+      
+      
+      
+     <a-atoll-terrain position="0 -90 0" plateau-radius="5" middle-radius="400" unit-size="4" far="4000"
+                     land-yin-color="#528d04" land-yang-color="#278d53" sea-yin-color="#005e85" sea-yang-color="#2571cf"
+                     sun-position="0.8 0.6 0">
+    </a-atoll-terrain>
+      <!-- Lights -->
+      <a-entity light="color: #d9d9d9; intensity: 1.0; type: point; " position="7.992 2.500 5.000"></a-entity>
+      <a-entity light="color: #d9d9d9; intensity: 0.5; type: point; " position="-6.647 2.064 -8.640"></a-entity>
+      <a-entity light="color: #d9d9d9; intensity: 0.3; type: point; " position="-9.409 2.064 -3.610"></a-entity>
+      <a-entity light="color: #d9d9d9; intensity: 0.3; type: point; " position="0.489 2.027 2.883"></a-entity>
+      <a-entity light="color: #d9d9d9; intensity: 0.7; type: point; " position="3.313 2.027 28.692"></a-entity>
+      
+      <!-- Enviroment -->
+      
+      
+      <!-- Assets --> 
+      <a-assets>
+     
+        
+        <a-assets>
+          <video id="webcam" playsinline crossorigin="anonymous"></video>
+        </a-assets>
+        
+        
+        
+        <!-- Avatar   -->
+        <template id="avatar-template">
+          
+          <a-entity class="avatar" networked-audio-source="distanceModel: exponential; refDistance: 3; rolloffFactor: 3; maxDistance: 40" >
+
+             <a-box  color="#FFF" width="0.9" depth="0.1" height="0.7" position="0 0.16 0.2"  material="side: front" networked-video-source></a-box>
+            
+            <!-- Name tag --> 
+            <a-text class="nametag" align="center" scale="1 1 1" position="0 0.65 0.260" rotation="0 180 0" side="double" value="Anonymous" ></a-text>
+            <a-cone class "body" position="0 -0.8 0.27"  height="0.6" radius-bottom="0.2" radius-top="0.28" color="tomato"></a-cone>
+            <a-sphere class="body" position="0 -1.1 0.27"  scale="0.2 0.2 0.2"  color="tomato"></a-sphere>          
+            <a-sphere class="body" position="0 -0.48 0.27"  scale="0.277 0.277 0.277"  color="tomato"></a-sphere>          
+
+            </a-entity>
+        </template>
+      </a-assets>
+      
+
+      <!-- Player setup -->
+                <a-sky src="https://cdn.glitch.com/1573852c-e49c-43e4-9209-6a33900e909e%2FCapture.PNG?v=1626332890252"></a-sky>
+      <a-simple-sun-sky  sun-position="-1 1 -1" color="#87cefa" dark-color="#00bfff" fog-color="#74d2fa"></a-simple-sun-sky>
+<a-entity light="type: ambient; color: #BBB; intensity: 0.5;"></a-entity>
+      
+      
+            <a-entity id="player" physics="debug: false; restitution: 10;" 
+                networked="template:#avatar-template; showLocalTemplate:false; attachTemplateToLocal: true;" 
+                camera="fov: 50;"  
+                spawn-in-circle="radius:3;" 
+                position="12 1.5 0" 
+                wasd-controls="acceleration:115"
+                look-controls 
+                kinematic-body
+                >
+                <a-cursor  geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"></a-cursor>
+<a-entity laser-controls="hand: left"></a-entity>
+<a-entity laser-controls="hand: right"></a-entity>
+
+      </a-entity>
+     <a-entity class="office" position="12 0 0"> 
+      <!---Office-->
+      <a-gltf-model src="https://cdn.glitch.com/1bec14fb-7798-442d-bcc2-f668143df21b%2Fscene%20-%202021-07-17T195631.785.glb?v=1626577016010" positIon="-15 0.2 0" scale=" 1 1 1"></a-gltf-model>
+<!--Sofa exxtra-->
+            <a-gltf-model static-body src="https://cdn.glitch.com/1bec14fb-7798-442d-bcc2-f668143df21b%2Fscene%20-%202021-07-17T201301.090.glb?v=1626578000663" positIon="-11 0.8 -6.1" scale="2 2 2"></a-gltf-model>
+
+<!--Extra cofee table-->
+                  <a-gltf-model static-body src="https://cdn.glitch.com/1bec14fb-7798-442d-bcc2-f668143df21b%2Fscene%20-%202021-07-17T230625.551.glb?v=1626588401983" positIon="-12 0 -2.1" scale="1.6 1.6 1.6"></a-gltf-model>
+
+      <!--Plants-->
+              <a-gltf-model static-body src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2Fscene%20-%202021-07-16T143347.610.glb?v=1626471256832" position="-14 0.2 6.8" scale="1.2 1.2 1.2"></a-gltf-model>
+              <a-gltf-model static-body src="https://cdn.glitch.com/73d82bc6-2075-4242-8084-534c19e1d13c%2Fscene%20-%202021-07-16T000425.746.glb?v=1626419075258" position="-16 0.2 6.8" scale="0.3 0.3 0.3"></a-gltf-model>
+              <a-gltf-model static-body src="https://cdn.glitch.com/73d82bc6-2075-4242-8084-534c19e1d13c%2Fscene%20-%202021-07-16T000425.746.glb?v=1626419075258" position="-16.4 0.2 -7" scale="0.3 0.3 0.3"></a-gltf-model>
+        <a-gltf-model static-body src="https://cdn.glitch.com/73d82bc6-2075-4242-8084-534c19e1d13c%2Fscene%20-%202021-07-15T235908.926.glb?v=1626418759873" position="-14.2 0.1 -6" scale="1.2 1.2 1.2"></a-gltf-model>
+<!--Succulent bowl-->
+              <a-gltf-model static-body src="https://cdn.glitch.com/1bec14fb-7798-442d-bcc2-f668143df21b%2Fscene%20-%202021-07-17T210732.432.glb?v=1626581260028" position="-19.8 0.8 6" scale="0.8 0.8 0.8"></a-gltf-model>
+
+      <!--Invisible plane ur standing on-->
+              <a-box static-body width=10000 height=0.001 depth=10000 position="0 1.5 0" visible="false"></a-box>
+      
+      <!--Other invisible boxes 4 physics-->
+                    <a-box static-body width=10 height=10 depth=100 position="0 1.5 0" visible="false"></a-box>
+                    <a-box static-body width=10 height=10 depth=100 rotation="0 90 0" position="0 1.5 12.4" visible="false"></a-box>
+                    <a-box static-body width=10 height=10 depth=100 rotation="0 90 0" position="0 1.5 -12.4" visible="false"></a-box>
+                    <a-box static-body width=10 height=10 depth=100 position="-30 1.5 0" visible="false"></a-box>
+
+      <!--Furnature invisible boxes 4 physics-->
+                          <a-box static-body width=4 height=10 depth=0.8 position="-21.7 1.5 1.4" visible="false"></a-box>
+
+      
+<!--Writing component thing-->
+   <a-entity scale="0.3 0.3 0.3" position="-20.6 1.4 3.8" class="textarea-component">
+      <a-gltf-model static-body rotation="90 90 0" src="https://cdn.glitch.com/798b2221-c913-44a7-bf7b-afcc2a68685b%2FSizzling%20Jarv%20(2).glb?v=1626480205812" position="-11.4 5.65 -0.5" scale="0.04 0.04 0.04"></a-gltf-model>        
+      
+      <a-entity static-body position="-11.2 2.5 -1" rotation="0 90 0" scale="9.5 9.5 9.5" textarea="cols: 50; rows: 10; text:; backgroundColor: ivory; color: #222; disabledBackgroundColor: red; disabled: false;"></a-entity>
+  </a-entity>
+    
+      </a-entity>
+      
+    </a-scene>
+    
+    
+    <script>
+      NAF.schemas.add({
+        template: '#avatar-template',
+        components: [
+          'position',
+          'rotation',  
+          {
+            selector: '.nametag',
+            component: 'text',
+            property: 'value'
+          },
+          {
+            selector: '.head',
+            component: 'material',
+            property: 'src'
+          },
+
+        ]
+      });
+      
+      
+      function makeId(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < length; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+      }
+      
+      
+      
+      function onSceneLoad() {
+        // var username = 'user-' + makeId(5).toLowerCase();
+        let possible = ["Unnamed user", "Unnamed user"]
+        var username = possible[Math.floor(Math.random(possible.length)*2)]
+        
+        
+        username = prompt('Choose a username', username);
+        var player = document.getElementById('player');
+        var myNametag = player.querySelector('.nametag');
+        myNametag.setAttribute('text', 'value', username);
+      }  
+      
+      
+    </script> 
+    
+    
+<script>
+  
+  
+  navigator.mediaDevices.getUserMedia({audio: false, video: true})
+  .then(stream => {
+    let $video = document.querySelector('video');
+    
+      
+    $video.srcObject = stream
+    
+    $video.onloadedmetadata = () => {
+      $video.play()
+    }
+  })
+</script>
+    
+
+    
+    
+   
+
+    
+    <script>
+    
+      
+    $( "#location1" ).click(function() {
+      $("#player").attr("position","-8 1.5 3");
+    });
+      
+    $( "#location2" ).click(function() {
+      $("#player").attr("position","-2.517 2.0 4.333");
+    });
+      
+    $( "#location3" ).click(function() {
+      $("#player").attr("position","-0.376 4.4 4.245");
+    });
+      
+    $( "#location4" ).click(function() {
+      $("#player").attr("position","-6.900 1.5 -9.530");
+    });
+     
+
+      
+      document.querySelector('a-scene').addEventListener('loaded', onSceneLoad)
+      
+      
+    </script>
+    
+    
+  </body>
+</html>
